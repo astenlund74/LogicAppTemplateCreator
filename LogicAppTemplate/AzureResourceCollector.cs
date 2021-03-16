@@ -1,4 +1,4 @@
-﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
+﻿// using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
@@ -24,16 +24,20 @@ namespace LogicAppTemplate
         }
         public string Login(string tenantName)
         {
-            string authstring = Constants.AuthString;
-            if (!string.IsNullOrEmpty(tenantName))
-            {
-                authstring = authstring.Replace("common", tenantName);
-            }
-            AuthenticationContext ac = new AuthenticationContext(authstring, true);
+            Console.WriteLine("Login not supported - provide a valid Token argument");
+            return null;
+            // string authstring = Constants.AuthString;
+            // if (!string.IsNullOrEmpty(tenantName))
+            // {
+            //     authstring = authstring.Replace("common", tenantName);
+            // }
+            // AuthenticationContext ac = new AuthenticationContext(authstring, true);
 
-            var ar = ac.AcquireTokenAsync(Constants.ResourceUrl, Constants.ClientId, new Uri(Constants.RedirectUrl), new PlatformParameters(PromptBehavior.RefreshSession)).GetAwaiter().GetResult();
-            token = ar.AccessToken;
-            return token;
+            // // TODO: Replace with MSAL library? 
+            // var ar = ac.AcquireTokenAsync(Constants.ResourceUrl, Constants.ClientId, new Uri(Constants.RedirectUrl), 
+            //         new PlatformParameters(PromptBehavior.Auto, null)).GetAwaiter().GetResult();
+            // token = ar.AccessToken;
+            // return token;
         }
         private static HttpClient client = new HttpClient() { BaseAddress = new Uri("https://management.azure.com") };
 

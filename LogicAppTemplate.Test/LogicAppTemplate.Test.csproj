@@ -1,209 +1,134 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{468B0D22-0884-46B7-8EE6-51B9F12EFFE9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogicAppTemplate.Test</RootNamespace>
-    <AssemblyName>LogicAppTemplate.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Product>LogicAppTemplate.Test</Product>
+    <PackageId>LogicAppTemplate.Test</PackageId>
+    <AssemblyVersion>0.1.4.0</AssemblyVersion>
+    <FileVersion>0.1.4.0</FileVersion>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <PackageReference
+        Include="Microsoft.IdentityModel.Clients.ActiveDirectory"
+        Version="5.2.7.0"/>
+    <PackageReference
+        Include="Newtonsoft.Json"
+        Version="12.0.3"/>
+    <PackageReference
+        Include="System.Management.Automation"
+        Version="7.1.0"/>
+    <PackageReference
+        Include="System.Runtime.Caching"
+        Version="5.0.0"/>
+    <PackageReference
+        Include="Microsoft.NET.Test.Sdk"
+        Version="16.7.1"/>
+    <PackageReference
+        Include="MSTest.TestAdapter"
+        Version="2.1.1"/>
+    <PackageReference
+        Include="MSTest.TestFramework"
+        Version="2.1.1"/>
+    <PackageReference
+        Include="coverlet.collector"
+        Version="1.3.0"/>
   </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
-  <ItemGroup>
-    <Compile Include="AzureResourceIdTests.cs" />
-    <Compile Include="CDSConnectorTests.cs" />
-    <Compile Include="DynamicsAXConnectorTests.cs" />
-    <Compile Include="IntegrationAccountTest.cs" />
-    <Compile Include="BlobConnector2Test.cs" />
-    <Compile Include="StorageQueueConnectorTest.cs" />
-    <Compile Include="ExpressionTest.cs" />
-    <Compile Include="CustomConnectorTest.cs" />
-    <Compile Include="MockResourceCollector.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BlobConnectorTest.cs" />
-    <Compile Include="EventGridConnectorTest.cs" />
-    <Compile Include="TemplateGeneratorTests.cs" />
-    <Compile Include="ParamGeneratorTests.cs" />
-    <Compile Include="TableConnectorTest.cs" />
-    <EmbeddedResource Include="TestFiles\Http-Variable.json" />
-    <Compile Include="Utils.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\LogicAppTemplate\LogicAppTemplate.csproj">
       <Project>{cbec9309-3748-487f-8118-a3865c21b02c}</Project>
       <Name>LogicAppTemplate</Name>
     </ProjectReference>
   </ItemGroup>
+ 
   <ItemGroup>
-    <EmbeddedResource Include="TestFiles\WorkflowTest.json" />
-    <EmbeddedResource Include="TestFiles\APIM.json" />
-    <EmbeddedResource Include="TestFiles\integrationaccount.json" />
-    <EmbeddedResource Include="TestFiles\APIMMultipleSame.json" />
-    <EmbeddedResource Include="TestFiles\APIMMultipleDiffrent.json" />
-    <EmbeddedResource Include="TestFiles\complex-logicapp-if.json" />
-    <EmbeddedResource Include="TestFiles\complex-logicapp-switch.json" />
-    <EmbeddedResource Include="TestFiles\paramGeneratorLogicAppTemplate.json" />
-    <EmbeddedResource Include="TestFiles\file-test-trigger-gateway.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\filegateway.json" />
-    <EmbeddedResource Include="TestFiles\WorkflowTestOtherResourcegroup.json" />
-    <EmbeddedResource Include="TestFiles\file-test-readfolder.json" />
-    <EmbeddedResource Include="TestFiles\parameter-test-object.json" />
-    <EmbeddedResource Include="TestFiles\IntegrationAccount-FlatFileAndTransform.json" />
-    <EmbeddedResource Include="TestFiles\HTTP-Authentication.json" />
-    <EmbeddedResource Include="TestFiles\HTTP-basic.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\filegatewayInstance.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\sqlgateway.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\sqlgatewayInstance.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\sqlcloud.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\sqlcloudInstance.json" />
-    <EmbeddedResource Include="TestFiles\paramGenerator-securestring.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\azureblob.json" />
-    <EmbeddedResource Include="TestFiles\ApiSource\azureblobinstance.json" />
-    <EmbeddedResource Include="TestFiles\AzureBlob.json" />
+    <EmbeddedResource Include="TestFiles/HTTP-Authentication.json" />
+    <EmbeddedResource Include="TestFiles/APIMMultipleDiffrent.json" />
+    <EmbeddedResource Include="TestFiles/ISE.json" />
+    <EmbeddedResource Include="TestFiles/APIMMultipleSame.json" />
+    <EmbeddedResource Include="TestFiles/IntegrationAccount-FlatFileAndTransform.json" />
+    <EmbeddedResource Include="TestFiles/complex-logicapp-if.json" />
+    <EmbeddedResource Include="TestFiles/paramGenerator-nullString.json" />
+    <EmbeddedResource Include="TestFiles/HTTP-basic.json" />
+    <EmbeddedResource Include="TestFiles/ManagedIdentity.json" />
+    <EmbeddedResource Include="TestFiles/WorkflowTestOtherResourcegroup.json" />
+    <EmbeddedResource Include="TestFiles/WorkflowTest.json" />
+    <EmbeddedResource Include="TestFiles/AzureBlobWithDifferentNameThanConnectionName.json" />
+    <EmbeddedResource Include="TestFiles/file-test-readfolder.json" />
+    <EmbeddedResource Include="TestFiles/paramGenerator-securestring.json" />
+    <EmbeddedResource Include="TestFiles/file-test-triggerandmore.json" />
+    <EmbeddedResource Include="TestFiles/integrationaccount.json" />
+    <EmbeddedResource Include="TestFiles/complex-logicapp-switch.json" />
+    <EmbeddedResource Include="TestFiles/Samples/EventGridActionConnector/providers-Microsoft.Web-connections-azureeventgridpublish.json" />
+    <EmbeddedResource Include="TestFiles/Samples/EventGridActionConnector/providers-Microsoft.Logic-workflows-INT0005.Publish.json" />
+    <EmbeddedResource Include="TestFiles/Samples/EventGridActionConnector/providers-Microsoft.Web-locations-northeurope-managedApis-azureeventgridpublish.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CustomConnector/SampleCustomConnectorResource.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CustomConnector/providers-Microsoft.Web-customApis-Billogram.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CustomConnector/providers-Microsoft.Web-connections-Billogram.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CustomConnector/SampleSwaggerDefinition.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CustomConnector/providers-Microsoft.Logic-workflows-INT001.Invoice.json" />
+    <EmbeddedResource Include="TestFiles/Samples/IntegrationAccountSchemas/SampleDefinition.json" />
+    <EmbeddedResource Include="TestFiles/Samples/IntegrationAccountSchemas/SampleMap.xsd" />
+    <EmbeddedResource Include="TestFiles/Samples/StorageQueuesConnector/providers-Microsoft.Web-locations-northeurope-managedApis-azurequeues.json" />
+    <EmbeddedResource Include="TestFiles/Samples/StorageQueuesConnector/providers-Microsoft.Logic-workflows-INT0091.MailboxErrorHandling.json" />
+    <EmbeddedResource Include="TestFiles/Samples/StorageQueuesConnector/providers-Microsoft.Web-connections-azurequeues-1.json" />
+    <EmbeddedResource Include="TestFiles/Samples/StorageQueuesConnector/providers-Microsoft.Web-connections-azurequeues.json" />
+    <EmbeddedResource Include="TestFiles/Samples/TableConnector/providers-Microsoft.Web-locations-westeurope-managedApis-azuretables.json" />
+    <EmbeddedResource Include="TestFiles/Samples/TableConnector/providers-Microsoft.Web-connections-azuretables.json" />
+    <EmbeddedResource Include="TestFiles/Samples/TableConnector/providers-Microsoft.Logic-workflows-addDataToTable.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DiagnosticSettings/providers-Microsoft.Logic-workflows-INT001.Invoice-providers-microsoft.insights-diagnosticSettings.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DiagnosticSettings/providers-Microsoft.Logic-workflows-INT001.Invoice.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicAxTrigger/providers-Microsoft.Logic-workflows-INT142-LA-002-partsProgramming.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicAxTrigger/providers-Microsoft.Web-locations-eastus-managedApis-sql.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicAxTrigger/providers-Microsoft.Logic-workflows-INT142-LA-002-partsProgramming-providers-microsoft.insights-diagnosticSettings.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicAxTrigger/providers-Microsoft.Web-locations-eastus-managedApis-dynamicsax.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicAxTrigger/providers-Microsoft.Web-connections-dynamicsax.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicAxTrigger/providers-Microsoft.Web-connections-sql-1.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector2/providers-Microsoft.Logic-workflows-INT0040.HireNew.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector2/providers-Microsoft.Web-locations-northeurope-managedApis-azureblob.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector2/providers-Microsoft.Web-customApis-LDAPAdapter.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector2/providers-Microsoft.Web-connections-azureblob.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector2/providers-Microsoft.Web-connections-LDAPAdapter.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicsAx/providers-Microsoft.Logic-workflows-INT117-LA-004-GetFundingsFromD365-providers-microsoft.insights-diagnosticSettings.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicsAx/providers-Microsoft.Web-locations-northeurope-managedApis-sql.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicsAx/providers-Microsoft.Web-connections-sql.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicsAx/providers-Microsoft.Web-locations-northeurope-managedApis-dynamicsax.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicsAx/providers-Microsoft.Logic-workflows-INT117-LA-004-GetFundingsFromD365.json" />
+    <EmbeddedResource Include="TestFiles/Samples/DynamicsAx/providers-Microsoft.Web-connections-dynamicsax.json" />
+   
+    <EmbeddedResource Include="TestFiles/Samples/CdsConnector/providers-Microsoft.Logic-workflows-FilePickerTest-providers-microsoft.insights-diagnosticSettings.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CdsConnector/providers-Microsoft.Logic-workflows-FilePickerTest.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CdsConnector/providers-Microsoft.Web-connections-commondataservice.json" />
+    <EmbeddedResource Include="TestFiles/Samples/CdsConnector/providers-Microsoft.Web-locations-northeurope-managedApis-commondataservice.json" />
+   
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector/providers-Microsoft.Web-locations-northeurope-managedApis-azureblob.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector/providers-Microsoft.Web-customApis-LDAPAdapter.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector/providers-Microsoft.Logic-workflows-INT0012C.Workday.Rehire.Leavers.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector/providers-Microsoft.Web-connections-azureblob.json" />
+    <EmbeddedResource Include="TestFiles/Samples/BlobConnector/providers-Microsoft.Web-connections-LDAPAdapter.json" />
+    <EmbeddedResource Include="TestFiles/Samples/IntegrationAccountMaps/providers-Microsoft.Logic-workflows-test.json" />
+    <EmbeddedResource Include="TestFiles/Samples/IntegrationAccountMaps/integrationAccounts-2ab2c1d54f50483ca584368cfc062de4-maps-TEST_Create_User-contents-Value.json" />
+    <EmbeddedResource Include="TestFiles/Samples/IntegrationAccountMaps/integrationAccounts-2ab2c1d54f50483ca584368cfc062de4-maps-NotificationMap-contents-Value.json" />
+    <EmbeddedResource Include="TestFiles/Samples/IntegrationAccountMaps/providers-Microsoft.Logic-integrationAccounts-IntegrationAccountDev-maps-TEST_Create_User.json" />
+    <EmbeddedResource Include="TestFiles/Samples/IntegrationAccountMaps/providers-Microsoft.Logic-integrationAccounts-IntegrationAccountDev-maps-NotificationMap.json" />
+    <EmbeddedResource Include="TestFiles/misingparameter.json" />
+    <EmbeddedResource Include="TestFiles/APIM.json" />
+    <EmbeddedResource Include="TestFiles/parameter-test-object.json" />
+    <EmbeddedResource Include="TestFiles/file-test-trigger-gateway.json" />
+    <EmbeddedResource Include="TestFiles/Http-Variable.json" />
+    <EmbeddedResource Include="TestFiles/Connector-Storage-Table.json" />
+    <EmbeddedResource Include="TestFiles/AzureBlob.json" />
+    <EmbeddedResource Include="TestFiles/paramGeneratorLogicAppTemplate.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/sqlgatewayInstance.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/sqlgateway.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/sqlcloudInstance.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/filegateway.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/azureblobinstance.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/filegatewayInstance.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/azureblob.json" />
+    <EmbeddedResource Include="TestFiles/ApiSource/sqlcloud.json" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\misingparameter.json" />
-    <EmbeddedResource Include="TestFiles\file-test-triggerandmore.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CustomConnector\providers-Microsoft.Logic-workflows-INT001.Invoice.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CustomConnector\providers-Microsoft.Web-connections-Billogram.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CustomConnector\providers-Microsoft.Web-customApis-Billogram.json" />
-    <EmbeddedResource Include="TestFiles\paramGenerator-nullString.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DiagnosticSettings\providers-Microsoft.Logic-workflows-INT001.Invoice.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DiagnosticSettings\providers-Microsoft.Logic-workflows-INT001.Invoice-providers-microsoft.insights-diagnosticSettings.json" />
-    <EmbeddedResource Include="TestFiles\Connector-Storage-Table.json" />
-    <EmbeddedResource Include="TestFiles\Samples\TableConnector\providers-Microsoft.Logic-workflows-addDataToTable.json" />
-    <EmbeddedResource Include="TestFiles\Samples\TableConnector\providers-Microsoft.Web-connections-azuretables.json" />
-    <EmbeddedResource Include="TestFiles\Samples\TableConnector\providers-Microsoft.Web-locations-westeurope-managedApis-azuretables.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector\providers-Microsoft.Logic-workflows-INT0012C.Workday.Rehire.Leavers.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector\providers-Microsoft.Web-connections-azureblob.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector\providers-Microsoft.Web-connections-LDAPAdapter.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector\providers-Microsoft.Web-customApis-LDAPAdapter.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector\providers-Microsoft.Web-locations-northeurope-managedApis-azureblob.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector2\providers-Microsoft.Logic-workflows-INT0040.HireNew.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector2\providers-Microsoft.Web-connections-azureblob.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector2\providers-Microsoft.Web-connections-LDAPAdapter.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector2\providers-Microsoft.Web-customApis-LDAPAdapter.json" />
-    <EmbeddedResource Include="TestFiles\Samples\BlobConnector2\providers-Microsoft.Web-locations-northeurope-managedApis-azureblob.json" />
-    <EmbeddedResource Include="TestFiles\Samples\EventGridActionConnector\providers-Microsoft.Logic-workflows-INT0005.Publish.json" />
-    <EmbeddedResource Include="TestFiles\Samples\EventGridActionConnector\providers-Microsoft.Web-connections-azureeventgridpublish.json" />
-    <EmbeddedResource Include="TestFiles\Samples\EventGridActionConnector\providers-Microsoft.Web-locations-northeurope-managedApis-azureeventgridpublish.json" />
-    <EmbeddedResource Include="TestFiles\Samples\StorageQueuesConnector\providers-Microsoft.Logic-workflows-INT0091.MailboxErrorHandling.json" />
-    <EmbeddedResource Include="TestFiles\Samples\StorageQueuesConnector\providers-Microsoft.Web-connections-azurequeues-1.json" />
-    <EmbeddedResource Include="TestFiles\Samples\StorageQueuesConnector\providers-Microsoft.Web-connections-azurequeues.json" />
-    <EmbeddedResource Include="TestFiles\Samples\StorageQueuesConnector\providers-Microsoft.Web-locations-northeurope-managedApis-azurequeues.json" />
-    <EmbeddedResource Include="TestFiles\Samples\IntegrationAccountMaps\integrationAccounts-2ab2c1d54f50483ca584368cfc062de4-maps-NotificationMap-contents-Value.json" />
-    <EmbeddedResource Include="TestFiles\Samples\IntegrationAccountMaps\integrationAccounts-2ab2c1d54f50483ca584368cfc062de4-maps-TEST_Create_User-contents-Value.json" />
-    <EmbeddedResource Include="TestFiles\Samples\IntegrationAccountMaps\providers-Microsoft.Logic-integrationAccounts-IntegrationAccountDev-maps-NotificationMap.json" />
-    <EmbeddedResource Include="TestFiles\Samples\IntegrationAccountMaps\providers-Microsoft.Logic-integrationAccounts-IntegrationAccountDev-maps-TEST_Create_User.json" />
-    <EmbeddedResource Include="TestFiles\Samples\IntegrationAccountMaps\providers-Microsoft.Logic-workflows-test.json" />
-    <EmbeddedResource Include="TestFiles\AzureBlobWithDifferentNameThanConnectionName.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\ISE.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CustomConnector\SampleSwaggerDefinition.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CustomConnector\SampleCustomConnectorResource.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\Samples\IntegrationAccountSchemas\SampleMap.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestFiles\Samples\IntegrationAccountSchemas\SampleDefinition.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <EmbeddedResource Include="TestFiles\ManagedIdentity.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicsAx\providers-Microsoft.Logic-workflows-INT117-LA-004-GetFundingsFromD365-providers-microsoft.insights-diagnosticSettings.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicsAx\providers-Microsoft.Logic-workflows-INT117-LA-004-GetFundingsFromD365.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicsAx\providers-Microsoft.Web-connections-dynamicsax.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicsAx\providers-Microsoft.Web-connections-sql.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicsAx\providers-Microsoft.Web-locations-northeurope-managedApis-dynamicsax.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicsAx\providers-Microsoft.Web-locations-northeurope-managedApis-sql.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicAxTrigger\providers-Microsoft.Logic-workflows-INT142-LA-002-partsProgramming-providers-microsoft.insights-diagnosticSettings.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicAxTrigger\providers-Microsoft.Logic-workflows-INT142-LA-002-partsProgramming.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicAxTrigger\providers-Microsoft.Web-connections-dynamicsax.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicAxTrigger\providers-Microsoft.Web-connections-sql-1.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicAxTrigger\providers-Microsoft.Web-locations-eastus-managedApis-dynamicsax.json" />
-    <EmbeddedResource Include="TestFiles\Samples\DynamicAxTrigger\providers-Microsoft.Web-locations-eastus-managedApis-sql.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CdsConnector\providers-Microsoft.Logic-workflows-FilePickerTest-providers-microsoft.insights-diagnosticSettings.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CdsConnector\providers-Microsoft.Logic-workflows-FilePickerTest.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CdsConnector\providers-Microsoft.Web-connections-commondataservice.json" />
-    <EmbeddedResource Include="TestFiles\Samples\CdsConnector\providers-Microsoft.Web-locations-northeurope-managedApis-commondataservice.json" />
-  </ItemGroup>
-  <ItemGroup />
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

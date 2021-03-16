@@ -5,7 +5,6 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LogicAppTemplate
 {
@@ -51,11 +50,11 @@ namespace LogicAppTemplate
                     resourceCollector.token = Token;
                 }
             }
-            else if (ClaimsDump.Contains("Token copied"))
-            {
-                Token = Clipboard.GetText().Replace("Bearer ", "");
-                resourceCollector.token = Token;
-            }
+            // else if (ClaimsDump.Contains("Token copied"))
+            // {
+            //     Token = Clipboard.GetText().Replace("Bearer ", "");
+            //     resourceCollector.token = Token;
+            // }
             else
             {
                 return;

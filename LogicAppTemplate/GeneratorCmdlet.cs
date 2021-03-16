@@ -5,7 +5,6 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LogicAppTemplate
 {
@@ -57,17 +56,6 @@ namespace LogicAppTemplate
         [Parameter(Mandatory = false, HelpMessage = "If supplied, Connections for the Logic App will not be output in the ARM template")]
         public SwitchParameter DisableConnectionGeneration;
 
-        [Parameter(Mandatory = false, HelpMessage = "If supplied, Tags are not parameterized for the Logic App will not be output in the ARM template")]
-        public SwitchParameter DisableTagParameters;
-
-        [Parameter(Mandatory = false, HelpMessage = "If supplied, FunctionNames are not parameterized for the Logic App will not be output in the ARM template")]
-        public SwitchParameter DisableFunctionNameParameters;
-
-        [Parameter(Mandatory = false, HelpMessage = "If supplied, Oauth Connections Authorization are not set in the ARM template")]
-        public SwitchParameter SkipOauthConnectionAuthorization;
-
-        [Parameter(Mandatory = false, HelpMessage = "If supplied, the ServiceBusDisplayNames is used within the parameters in the ARM template")]
-        public SwitchParameter UseServiceBusDisplayName;
 
         protected override void ProcessRecord()
         {
@@ -87,11 +75,11 @@ namespace LogicAppTemplate
                     resourceCollector.token = Token;
                 }
             }
-            else if (ClaimsDump.Contains("Token copied"))
-            {
-                Token = GetClipboardText().Replace("Bearer ", "");
-                resourceCollector.token = Token;
-            }
+            // else if (ClaimsDump.Contains("Token copied"))
+            // {
+            //     Token = GetClipboardText().Replace("Bearer ", "");
+            //     resourceCollector.token = Token;
+            // }
             else
             {
                 return;
@@ -103,12 +91,8 @@ namespace LogicAppTemplate
                 GenerateHttpTriggerUrlOutput = this.GenerateHttpTriggerUrlOutput,
                 IncludeInitializeVariable = this.IncludeInitializeVariable,
                 ForceManagedIdentity = this.ForceManagedIdentity,
-                FixedFunctionAppName = this.FixedFunctionAppName,
-                DisableConnectionsOutput = this.DisableConnectionGeneration,
-                DisableTagParameters = this.DisableTagParameters,
-                DisableFunctionNameParameters = this.DisableFunctionNameParameters,
-                SkipOauthConnectionAuthorization = this.SkipOauthConnectionAuthorization,
-                UseServiceBusDisplayName = this.UseServiceBusDisplayName
+                FixedFunctionAppName = FixedFunctionAppName,
+                DisableConnectionsOutput = this.DisableConnectionGeneration
             };
 
             try
@@ -138,33 +122,33 @@ namespace LogicAppTemplate
                 }
             }
         }
-        private string GetClipboardText()
-        {
-            string strClipboard = string.Empty;
+        // private string GetClipboardText()
+        // {
+        //     string strClipboard = string.Empty;
 
-            for (int i = 0; i < 10; i++)
-            {
-                try
-                {
-                    strClipboard = Clipboard.GetText();
-                    if (strClipboard != string.Empty)
-                        return strClipboard;
+        //     for (int i = 0; i < 10; i++)
+        //     {
+        //         try
+        //         {
+        //             strClipboard = Clipboard.GetText();
+        //             if (strClipboard != string.Empty)
+        //                 return strClipboard;
 
-                    System.Threading.Thread.Sleep(10);
-                }
-                catch (System.Runtime.InteropServices.COMException ex)
-                {
-                    //fix for OpenClipboard Failed (Exception from HRESULT: 0x800401D0 (CLIPBRD_E_CANT_OPEN))
-                    //https://stackoverflow.com/questions/12769264/openclipboard-failed-when-copy-pasting-data-from-wpf-datagrid
-                    //https://stackoverflow.com/questions/68666/clipbrd-e-cant-open-error-when-setting-the-clipboard-from-net
-                    if (ex.ErrorCode == -2147221040)
-                        System.Threading.Thread.Sleep(10);
-                    else
-                        throw new Exception("Unable to get Clipboard text.");
-                }
-            }
+        //             System.Threading.Thread.Sleep(10);
+        //         }
+        //         catch (System.Runtime.InteropServices.COMException ex)
+        //         {
+        //             //fix for OpenClipboard Failed (Exception from HRESULT: 0x800401D0 (CLIPBRD_E_CANT_OPEN))
+        //             //https://stackoverflow.com/questions/12769264/openclipboard-failed-when-copy-pasting-data-from-wpf-datagrid
+        //             //https://stackoverflow.com/questions/68666/clipbrd-e-cant-open-error-when-setting-the-clipboard-from-net
+        //             if (ex.ErrorCode == -2147221040)
+        //                 System.Threading.Thread.Sleep(10);
+        //             else
+        //                 throw new Exception("Unable to get Clipboard text.");
+        //         }
+        //     }
 
-            return strClipboard;
-        }
+        //     return strClipboard;
+        // }
     }
 }
